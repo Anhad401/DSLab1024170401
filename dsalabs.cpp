@@ -500,6 +500,92 @@ using namespace std;
 
 //     return 0;
 // }
+//6.)
+// int main() {
+//     int a[100][3], b[100][3], c[200][3], t[100][3];
+//     int i, j, k;
+
+//     // First matrix
+//     cout << "Enter rows, cols and non-zero terms of first matrix: ";
+//     cin >> a[0][0] >> a[0][1] >> a[0][2];
+//     cout << "Enter row col value:\n";
+//     for (i = 1; i <= a[0][2]; i++) cin >> a[i][0] >> a[i][1] >> a[i][2];
+
+//     // Second matrix
+//     cout << "Enter rows, cols and non-zero terms of second matrix: ";
+//     cin >> b[0][0] >> b[0][1] >> b[0][2];
+//     cout << "Enter row col value:\n";
+//     for (i = 1; i <= b[0][2]; i++) cin >> b[i][0] >> b[i][1] >> b[i][2];
+
+// a)
+//     t[0][0] = a[0][1];
+//     t[0][1] = a[0][0];
+//     t[0][2] = a[0][2];
+//     k = 1;
+//     for (i = 0; i < a[0][1]; i++) {
+//         for (j = 1; j <= a[0][2]; j++) {
+//             if (a[j][1] == i) {
+//                 t[k][0] = a[j][1];
+//                 t[k][1] = a[j][0];
+//                 t[k][2] = a[j][2];
+//                 k++;
+//             }
+//         }
+//     }
+//     cout << "\nTranspose of First Matrix:\n";
+//     for (i = 0; i <= t[0][2]; i++) cout << t[i][0] << " " << t[i][1] << " " << t[i][2] << "\n";
+//b)
+//     if (a[0][0] != b[0][0] || a[0][1] != b[0][1]) {
+//         cout << "\nAddition not possible\n";
+//     } else {
+//         c[0][0] = a[0][0]; c[0][1] = a[0][1];
+//         i = j = k = 1;
+//         while (i <= a[0][2] && j <= b[0][2]) {
+//             if (a[i][0] < b[j][0] || (a[i][0] == b[j][0] && a[i][1] < b[j][1]))
+//                 c[k][0] = a[i][0], c[k][1] = a[i][1], c[k++][2] = a[i++][2];
+//             else if (b[j][0] < a[i][0] || (a[i][0] == b[j][0] && b[j][1] < a[i][1]))
+//                 c[k][0] = b[j][0], c[k][1] = b[j][1], c[k++][2] = b[j++][2];
+//             else {
+//                 int sum = a[i][2] + b[j][2];
+//                 if (sum != 0) c[k][0] = a[i][0], c[k][1] = a[i][1], c[k++][2] = sum;
+//                 i++; j++;
+//             }
+//         }
+//         while (i <= a[0][2]) c[k][0] = a[i][0], c[k][1] = a[i][1], c[k++][2] = a[i++][2];
+//         while (j <= b[0][2]) c[k][0] = b[j][0], c[k][1] = b[j][1], c[k++][2] = b[j++][2];
+//         c[0][2] = k - 1;
+
+//         cout << "\nAddition Result:\n";
+//         for (i = 0; i <= c[0][2]; i++) cout << c[i][0] << " " << c[i][1] << " " << c[i][2] << "\n";
+//     }
+
+//c)
+//     if (a[0][1] != b[0][0]) {
+//         cout << "\nMultiplication not possible\n";
+//     } else {
+//         c[0][0] = a[0][0]; c[0][1] = b[0][1]; k = 1;
+//         for (i = 1; i <= a[0][2]; i++) {
+//             for (j = 1; j <= b[0][2]; j++) {
+//                 if (a[i][1] == b[j][0]) {
+//                     int row = a[i][0], col = b[j][1], val = a[i][2] * b[j][2];
+//                     int found = 0;
+//                     for (int x = 1; x < k; x++) {
+//                         if (c[x][0] == row && c[x][1] == col) {
+//                             c[x][2] += val;
+//                             found = 1; break;
+//                         }
+//                     }
+//                     if (!found) {
+//                         c[k][0] = row; c[k][1] = col; c[k][2] = val; k++;
+//                     }
+//                 }
+//             }
+//         }
+//         c[0][2] = k - 1;
+//         cout << "\nMultiplication Result:\n";
+//         for (i = 0; i <= c[0][2]; i++) cout << c[i][0] << " " << c[i][1] << " " << c[i][2] << "\n";
+//     }
+// }
 
 //7.)
 // int main() {

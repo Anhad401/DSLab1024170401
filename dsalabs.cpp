@@ -648,3 +648,194 @@ using namespace std;
 //     cout<<"total distinct elements = "<<distinct;
 //     return 0;
 // }
+//                          ASSIGNMENT 3 (STACKS)
+
+//Q1.
+// #define MAX 5   // maximum size of stack
+
+// class Stack {
+//     int arr[MAX];
+//     int top;
+
+// public:
+//     Stack() { top = -1; }
+
+//     // Check if stack is empty
+//     bool isEmpty() {
+//         return (top == -1);
+//     }
+
+//     // Check if stack is full
+//     bool isFull() {
+//         return (top == MAX - 1);
+//     }
+
+//     // Push element into stack
+//     void push(int x) {
+//         if (isFull()) {
+//             cout << "Stack Overflow! " << x << endl;
+//         } else {
+//             arr[++top] = x;
+//             cout << x << " pushed into stack.\n";
+//         }
+//     }
+
+//     // Pop element from stack
+//     void pop() {
+//         if (isEmpty()) {
+//             cout << "Nothing to pop.\n";
+//         } else {
+//             cout << arr[top--] << " popped from stack.\n";
+//         }
+//     }
+
+//     // Peek top element
+//     void peek() {
+//         if (isEmpty()) {
+//             cout << "Stack is empty.\n";
+//         } else {
+//             cout << "Top element is: " << arr[top] << endl;
+//         }
+//     }
+
+//     // Display all elements
+//     void display() {
+//         if (isEmpty()) {
+//             cout << "Stack is empty.\n";
+//         } else {
+//             cout << "Stack elements (top to bottom acc. to LIFO): ";
+//             for (int i = top; i >= 0; i--) {
+//                 cout << arr[i] << " ";
+//             }
+//             cout << endl;
+//         }
+//     }
+// };
+
+// int main() {
+//     Stack s;
+//     int choice, value;
+
+//     do {
+//         cout << "\n--- Stack Menu ---\n";
+//         cout << "1. Push\n2. Pop\n3. Peek\n4. Display\n5. isEmpty\n6. isFull\n7. Exit\n";
+//         cout << "Enter your choice: ";
+//         cin >> choice;
+
+//         switch (choice) {
+//             case 1:
+//                 cout << "Enter value to push: ";
+//                 cin >> value;
+//                 s.push(value);
+//                 break;
+
+//             case 2:
+//                 s.pop();
+//                 break;
+
+//             case 3:
+//                 s.peek();
+//                 break;
+
+//             case 4:
+//                 s.display();
+//                 break;
+
+//             case 5:
+//                 if (s.isEmpty())
+//                     cout << "Stack is empty.\n";
+//                 else
+//                     cout << "Stack is not empty.\n";
+//                 break;
+
+//             case 6:
+//                 if (s.isFull())
+//                     cout << "Stack is full.\n";
+//                 else
+//                     cout << "Stack is not full.\n";
+//                 break;
+
+//             case 7:
+//                 cout << "Exiting program.\n";
+//                 break;
+
+//             default:
+//                 cout << "Invalid choice! Try again.\n";
+//         }
+//     } while (choice != 7);
+
+//     return 0;
+// }
+
+//  Q2.)
+
+// #include <string>
+
+
+// int main() {
+//     char stack[100];   // stack array
+//     int top = -1;      // top of stack
+//     string str;
+
+//     cout << "Enter a string: ";
+//     cin >> str;   // (use getline if you want spaces)
+
+//     // Push each character into stack
+//     for (int i = 0; i < str.length(); i++) {
+//         stack[++top] = str[i];
+//     }
+
+//     // Pop characters back to reverse
+//     cout << "Reversed string: ";
+//     while (top != -1) {
+//         cout << stack[top--];
+//     }
+//     cout << endl;
+
+//     return 0;
+// }
+
+//Q3.)
+// int main() {
+//     char stack[100];   // stack array
+//     int top = -1;      // top of stack
+//     string expr;
+
+//     cout << "Enter an expression: ";
+//     getline(cin, expr);   // take full line including spaces
+
+//     bool balanced = true;
+
+//     for (int i = 0; i < expr.length(); i++) {
+//         char ch = expr[i];
+
+//         // Push opening brackets
+//         if (ch == '(' || ch == '{' || ch == '[') {
+//             stack[++top] = ch;
+//         }
+//         // Pop for closing brackets
+//         else if (ch == ')' || ch == '}' || ch == ']') {
+//             if (top == -1) {  // no matching opening
+//                 balanced = false;
+//                 break;
+//             }
+//             char topChar = stack[top--]; // pop
+//             if ((ch == ')' && topChar != '(') ||
+//                 (ch == '}' && topChar != '{') ||
+//                 (ch == ']' && topChar != '[')) {
+//                 balanced = false;
+//                 break;
+//             }
+//         }
+//     }
+
+//     // If stack not empty, still unbalanced
+//     if (top != -1) balanced = false;
+
+//     if (balanced)
+//         cout << "Expression is Balanced" << endl;
+//     else
+//         cout << "Expression is NOT Balanced" << endl;
+
+//     return 0;
+// }

@@ -839,3 +839,108 @@ using namespace std;
 
 //     return 0;
 // }
+//Q4.)
+// int main() {
+//     char infix[100], postfix[100], stack[100];
+//     int top = -1;   // stack pointer
+//     int i = 0, k = 0; // i → infix index, k → postfix index
+
+//     cout << "Enter infix expression: ";
+//     cin >> infix;
+
+//     while (infix[i] != '\0') {
+//         char ch = infix[i];
+
+//         // 1. Operand → directly add to postfix
+//         if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) {
+//             postfix[k++] = ch;
+//         }
+//         // 2. If '(' → push to stack
+//         else if (ch == '(') {
+//             stack[++top] = ch;
+//         }
+//         // 3. If ')' → pop until '('
+//         else if (ch == ')') {
+//             while (top != -1 && stack[top] != '(') {
+//                 postfix[k++] = stack[top--];
+//             }
+//             top--; // remove '(' from stack
+//         }
+//         // 4. If operator
+//         else {
+//             int prec;
+//             if (ch == '+' || ch == '-') prec = 1;
+//             else if (ch == '*' || ch == '/') prec = 2;
+//             else if (ch == '^') prec = 3;
+//             else prec = 0;
+
+//             // Pop higher or equal precedence operators
+//             while (top != -1) {
+//                 int prec2;
+//                 if (stack[top] == '+' || stack[top] == '-') prec2 = 1;
+//                 else if (stack[top] == '*' || stack[top] == '/') prec2 = 2;
+//                 else if (stack[top] == '^') prec2 = 3;
+//                 else prec2 = 0;
+
+//                 if (prec <= prec2 && ch != '^') { // '^' is right-associative
+//                     postfix[k++] = stack[top--];
+//                 } else break;
+//             }
+//             stack[++top] = ch; // push current operator
+//         }
+//         i++;
+//     }
+
+//     // 5. Pop remaining operators
+//     while (top != -1) {
+//         postfix[k++] = stack[top--];
+//     }
+
+//     postfix[k] = '\0';
+
+//     cout << "Postfix expression: " << postfix << endl;
+
+//     return 0;
+// }
+//Q5.)
+
+// #include <cmath>
+
+
+// int main() {
+//     char postfix[100];
+//     int stack[100];
+//     int top = -1;
+
+//     cout << "Enter postfix expression (single-digit operands): ";
+//     cin >> postfix;
+
+//     int i = 0;
+//     while (postfix[i] != '\0') {
+//         char ch = postfix[i];
+
+//         // If operand (digit), push to stack
+//         if (ch >= '0' && ch <= '9') {
+//             stack[++top] = ch - '0'; // convert char to int
+//         }
+//         // If operator, pop two and evaluate
+//         else {
+//             int val2 = stack[top--];
+//             int val1 = stack[top--];
+//             int result;
+
+//             if (ch == '+') result = val1 + val2;
+//             else if (ch == '-') result = val1 - val2;
+//             else if (ch == '*') result = val1 * val2;
+//             else if (ch == '/') result = val1 / val2;
+//             else if (ch == '^') result = pow(val1, val2);
+
+//             stack[++top] = result;
+//         }
+//         i++;
+//     }
+
+//     cout << "Result = " << stack[top] << endl;
+
+//     return 0;
+// }

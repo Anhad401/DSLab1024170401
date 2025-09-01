@@ -354,19 +354,25 @@ using namespace std;
 //     cout<<"after concatenation: "<<s1<<endl;
 
 // (b) Reverse
-//     char str1[100];
-//     cout<<"\n(b) enter string to reverse: ";
-//     cin>>str1;
-//     int n=strlen(str1);
-//     cout<<"reverse: ";
-//     for(int k=n-1;k>=0;k--){
-//         cout<<str1[k];
-//     }
-//     cout<<endl;
+//     int main() {
+//     char str[100];
+//     cout << "Enter a string: ";
+//     cin >> str;
 
+//     int n = strlen(str);
+
+//     for (int i = 0; i < n/2; i++) {
+//         char temp = str[i];
+//         str[i] = str[n-i-1];
+//         str[n-i-1] = temp;
+//     }
+
+//     cout << "Reversed string: " << str << endl;
+//     return 0;
+// }
 //   (c) Delete vowels
 //     char str2[100];
-//     cout<<"\n(c) enter string to delete vowels: ";
+//     cout<<"\n enter string to delete vowels: ";
 //     cin>>str2;
 //     int p=0,q=0;
 //     while(str2[p]!='\0'){
@@ -640,5 +646,301 @@ using namespace std;
 //     }
 
 //     cout<<"total distinct elements = "<<distinct;
+//     return 0;
+// }
+//                          ASSIGNMENT 3 (STACKS)
+
+//Q1.
+// #define MAX 5   // maximum size of stack
+
+// class Stack {
+//     int arr[MAX];
+//     int top;
+
+// public:
+//     Stack() { top = -1; }
+
+//     // Check if stack is empty
+//     bool isEmpty() {
+//         return (top == -1);
+//     }
+
+//     // Check if stack is full
+//     bool isFull() {
+//         return (top == MAX - 1);
+//     }
+
+//     // Push element into stack
+//     void push(int x) {
+//         if (isFull()) {
+//             cout << "Stack Overflow! " << x << endl;
+//         } else {
+//             arr[++top] = x;
+//             cout << x << " pushed into stack.\n";
+//         }
+//     }
+
+//     // Pop element from stack
+//     void pop() {
+//         if (isEmpty()) {
+//             cout << "Nothing to pop.\n";
+//         } else {
+//             cout << arr[top--] << " popped from stack.\n";
+//         }
+//     }
+
+//     // Peek top element
+//     void peek() {
+//         if (isEmpty()) {
+//             cout << "Stack is empty.\n";
+//         } else {
+//             cout << "Top element is: " << arr[top] << endl;
+//         }
+//     }
+
+//     // Display all elements
+//     void display() {
+//         if (isEmpty()) {
+//             cout << "Stack is empty.\n";
+//         } else {
+//             cout << "Stack elements (top to bottom acc. to LIFO): ";
+//             for (int i = top; i >= 0; i--) {
+//                 cout << arr[i] << " ";
+//             }
+//             cout << endl;
+//         }
+//     }
+// };
+
+// int main() {
+//     Stack s;
+//     int choice, value;
+
+//     do {
+//         cout << "\n--- Stack Menu ---\n";
+//         cout << "1. Push\n2. Pop\n3. Peek\n4. Display\n5. isEmpty\n6. isFull\n7. Exit\n";
+//         cout << "Enter your choice: ";
+//         cin >> choice;
+
+//         switch (choice) {
+//             case 1:
+//                 cout << "Enter value to push: ";
+//                 cin >> value;
+//                 s.push(value);
+//                 break;
+
+//             case 2:
+//                 s.pop();
+//                 break;
+
+//             case 3:
+//                 s.peek();
+//                 break;
+
+//             case 4:
+//                 s.display();
+//                 break;
+
+//             case 5:
+//                 if (s.isEmpty())
+//                     cout << "Stack is empty.\n";
+//                 else
+//                     cout << "Stack is not empty.\n";
+//                 break;
+
+//             case 6:
+//                 if (s.isFull())
+//                     cout << "Stack is full.\n";
+//                 else
+//                     cout << "Stack is not full.\n";
+//                 break;
+
+//             case 7:
+//                 cout << "Exiting program.\n";
+//                 break;
+
+//             default:
+//                 cout << "Invalid choice! Try again.\n";
+//         }
+//     } while (choice != 7);
+
+//     return 0;
+// }
+
+//  Q2.)
+
+// #include <string>
+
+
+// int main() {
+//     char stack[100];   // stack array
+//     int top = -1;      // top of stack
+//     string str;
+
+//     cout << "Enter a string: ";
+//     cin >> str;   // (use getline if you want spaces)
+
+//     // Push each character into stack
+//     for (int i = 0; i < str.length(); i++) {
+//         stack[++top] = str[i];
+//     }
+
+//     // Pop characters back to reverse
+//     cout << "Reversed string: ";
+//     while (top != -1) {
+//         cout << stack[top--];
+//     }
+//     cout << endl;
+
+//     return 0;
+// }
+
+//Q3.)
+// int main() {
+//     char stack[100];   // stack array
+//     int top = -1;      // top of stack
+//     string expr;
+
+//     cout << "Enter an expression: ";
+//     getline(cin, expr);   // take full line including spaces
+
+//     bool balanced = true;
+
+//     for (int i = 0; i < expr.length(); i++) {
+//         char ch = expr[i];
+
+//         // Push opening brackets
+//         if (ch == '(' || ch == '{' || ch == '[') {
+//             stack[++top] = ch;
+//         }
+//         // Pop for closing brackets
+//         else if (ch == ')' || ch == '}' || ch == ']') {
+//             if (top == -1) {  // no matching opening
+//                 balanced = false;
+//                 break;
+//             }
+//             char topChar = stack[top--]; // pop
+//             if ((ch == ')' && topChar != '(') ||
+//                 (ch == '}' && topChar != '{') ||
+//                 (ch == ']' && topChar != '[')) {
+//                 balanced = false;
+//                 break;
+//             }
+//         }
+//     }
+
+//     // If stack not empty, still unbalanced
+//     if (top != -1) balanced = false;
+
+//     if (balanced)
+//         cout << "Expression is Balanced" << endl;
+//     else
+//         cout << "Expression is NOT Balanced" << endl;
+
+//     return 0;
+// }
+//Q4.)
+// int main() {
+//     char infix[100], postfix[100], stack[100];
+//     int top = -1;   // stack pointer
+//     int i = 0, k = 0; // i → infix index, k → postfix index
+
+//     cout << "Enter infix expression: ";
+//     cin >> infix;
+
+//     while (infix[i] != '\0') {
+//         char ch = infix[i];
+
+//         // 1. Operand → directly add to postfix
+//         if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) {
+//             postfix[k++] = ch;
+//         }
+//         // 2. If '(' → push to stack
+//         else if (ch == '(') {
+//             stack[++top] = ch;
+//         }
+//         // 3. If ')' → pop until '('
+//         else if (ch == ')') {
+//             while (top != -1 && stack[top] != '(') {
+//                 postfix[k++] = stack[top--];
+//             }
+//             top--; // remove '(' from stack
+//         }
+//         // 4. If operator
+//         else {
+//             int prec;
+//             if (ch == '+' || ch == '-') prec = 1;
+//             else if (ch == '*' || ch == '/') prec = 2;
+//             else if (ch == '^') prec = 3;
+//             else prec = 0;
+
+//             // Pop higher or equal precedence operators
+//             while (top != -1) {
+//                 int prec2;
+//                 if (stack[top] == '+' || stack[top] == '-') prec2 = 1;
+//                 else if (stack[top] == '*' || stack[top] == '/') prec2 = 2;
+//                 else if (stack[top] == '^') prec2 = 3;
+//                 else prec2 = 0;
+
+//                 if (prec <= prec2 && ch != '^') { // '^' is right-associative
+//                     postfix[k++] = stack[top--];
+//                 } else break;
+//             }
+//             stack[++top] = ch; // push current operator
+//         }
+//         i++;
+//     }
+
+//     // 5. Pop remaining operators
+//     while (top != -1) {
+//         postfix[k++] = stack[top--];
+//     }
+
+//     postfix[k] = '\0';
+
+//     cout << "Postfix expression: " << postfix << endl;
+
+//     return 0;
+// }
+//Q5.)
+
+// #include <cmath>
+
+
+// int main() {
+//     char postfix[100];
+//     int stack[100];
+//     int top = -1;
+
+//     cout << "Enter postfix expression (single-digit operands): ";
+//     cin >> postfix;
+
+//     int i = 0;
+//     while (postfix[i] != '\0') {
+//         char ch = postfix[i];
+
+//         // If operand (digit), push to stack
+//         if (ch >= '0' && ch <= '9') {
+//             stack[++top] = ch - '0'; // convert char to int
+//         }
+//         // If operator, pop two and evaluate
+//         else {
+//             int val2 = stack[top--];
+//             int val1 = stack[top--];
+//             int result;
+
+//             if (ch == '+') result = val1 + val2;
+//             else if (ch == '-') result = val1 - val2;
+//             else if (ch == '*') result = val1 * val2;
+//             else if (ch == '/') result = val1 / val2;
+//             else if (ch == '^') result = pow(val1, val2);
+
+//             stack[++top] = result;
+//         }
+//         i++;
+//     }
+
+//     cout << "Result = " << stack[top] << endl;
+
 //     return 0;
 // }

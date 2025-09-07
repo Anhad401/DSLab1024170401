@@ -1061,7 +1061,7 @@ using namespace std;
 //     return 0;
 // }
 
-//2.)
+// 2.)
 
 // #define SIZE 5   // maximum size of circular queue
 
@@ -1191,7 +1191,7 @@ using namespace std;
 //     return 0;
 // }
 
-//3.)
+// 3.)
 
 // #define SIZE 100
 

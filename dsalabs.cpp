@@ -1467,3 +1467,166 @@ using namespace std;
 //     cout << s2.pop() << "\n"; // 25
 //     cout << s2.pop() << "\n"; // 15
 // }
+// ..............................................................additional qs.........................................................
+// 1)
+// struct Queue {
+//     char arr[100][20];   // queue of strings (binary numbers)
+//     int front, rear;
+//     Queue() { front = 0; rear = -1; }
+
+//     void enqueue(const char s[]) {
+//         rear++;
+//         strcpy(arr[rear], s);
+//     }
+
+//     void dequeue(char s[]) {
+//         strcpy(s, arr[front]);
+//         front++;
+//     }
+
+//     bool empty() {
+//         return front > rear;
+//     }
+// };
+
+// void generateBinary(int n) {
+//     Queue q;
+//     q.enqueue("1");
+
+//     for (int i = 1; i <= n; i++) {
+//         char s[20];
+//         q.dequeue(s);
+
+//         cout << s << " ";
+
+//         char s0[20], s1[20];
+//         strcpy(s0, s);
+//         strcpy(s1, s);
+
+//         strcat(s0, "0");
+//         strcat(s1, "1");
+
+//         q.enqueue(s0);
+//         q.enqueue(s1);
+//     }
+//     cout << endl;
+// }
+
+// int main() {
+//     int n;
+//     cout << "Enter n: ";
+//     cin >> n;
+//     generateBinary(n);
+//     return 0;
+// // }
+// 2)
+// struct Queue {
+//     int arr[100];
+//     int front, rear;
+//     Queue() { front = 0; rear = -1; }
+//     void enqueue(int x) { arr[++rear] = x; }
+//     int dequeue() { return arr[front++]; }
+//     int size() { return rear - front + 1; }
+//     bool empty() { return size() == 0; }
+//     int get(int i) { return arr[front + i]; }
+// };
+
+// int minIndex(Queue &q, int sortIndex) {
+//     int min_index = -1, min_val = 99999;
+//     int n = q.size();
+//     for (int i = 0; i < n; i++) {
+//         int curr = q.dequeue();
+//         if (curr <= min_val && i <= sortIndex) {
+//             min_index = i;
+//             min_val = curr;
+//         }
+//         q.enqueue(curr);
+//     }
+//     return min_index;
+// }
+
+// void insertMinToRear(Queue &q, int min_index) {
+//     int min_val;
+//     int n = q.size();
+//     for (int i = 0; i < n; i++) {
+//         int curr = q.dequeue();
+//         if (i != min_index) q.enqueue(curr);
+//         else min_val = curr;
+//     }
+//     q.enqueue(min_val);
+// }
+
+// void sortQueue(Queue &q) {
+//     int n = q.size();
+//     for (int i = 1; i <= n; i++) {
+//         int min_index = minIndex(q, n - i);
+//         insertMinToRear(q, min_index);
+//     }
+// }
+// 3)
+// bool checkSorted(int q[], int n) {
+//     int st[100], top = -1;
+//     int expected = 1;
+
+//     int front = 0;
+//     while (front < n) {
+//         int curr = q[front++];
+//         if (curr == expected) {
+//             expected++;
+//         } else {
+//             if (top != -1 && st[top] < curr) return false;
+//             st[++top] = curr;
+//         }
+//         while (top != -1 && st[top] == expected) {
+//             top--;
+//             expected++;
+//         }
+//     }
+//     return expected == n + 1;
+// }
+// 4.)
+// int countStudents(int students[], int sandwiches[], int n) {
+//     int q[100], front = 0, rear = -1;
+//     for (int i = 0; i < n; i++) q[++rear] = students[i];
+
+//     int top = 0, count = 0;
+//     while (front <= rear && count < (rear - front + 1)) {
+//         if (q[front] == sandwiches[top]) {
+//             front++;
+//             top++;
+//             count = 0;
+//         } else {
+//             q[++rear] = q[front];
+//             front++;
+//             count++;
+//         }
+//     }
+//     return (rear - front + 1);
+// }
+
+// // Main driver
+
+// int main() {
+//     cout << "Problem 1: Binary numbers" << endl;
+//     printBinary(5);
+
+//     cout << "\nProblem 2: Sort queue" << endl;
+//     Queue q;
+//     q.enqueue(11); q.enqueue(5); q.enqueue(4); q.enqueue(21);
+//     sortQueue(q);
+//     while (!q.empty()) cout << q.dequeue() << " ";
+//     cout << endl;
+
+//     cout << "\nProblem 3: Queue sortable using stack?" << endl;
+//     int arr[5] = {5, 1, 2, 3, 4};
+//     if (checkSorted(arr, 5)) cout << "Yes\n"; else cout << "No\n";
+
+//     cout << "\nProblem 4: Students and sandwiches" << endl;
+//     int students[4] = {1,1,0,0};
+//     int sandwiches[4] = {0,1,0,1};
+//     cout << countStudents(students, sandwiches, 4) << endl;
+
+//     return 0;
+// }
+
+

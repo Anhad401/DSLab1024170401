@@ -944,6 +944,148 @@ using namespace std;
 
 //     return 0;
 // }
+// ...................additional questions..........................
+// Utility stack (array based)
+
+// struct Stack {
+//     int arr[100], top;
+//     Stack() { top = -1; }
+//     void push(int x) { arr[++top] = x; }
+//     int pop() { return arr[top--]; }
+//     int peek() { return arr[top]; }
+//     bool empty() { return top == -1; }
+// };
+
+// ///////////////////////
+// // Problem 1: Nearest Smaller Element
+// ///////////////////////
+// void nearestSmaller(int A[], int n) {
+//     Stack st;
+//     for (int i = 0; i < n; i++) {
+//         while (!st.empty() && st.peek() >= A[i]) st.pop();
+//         if (st.empty()) cout << -1 << " ";
+//         else cout << st.peek() << " ";
+//         st.push(A[i]);
+//     }
+//     cout << endl;
+// }
+
+// ///////////////////////
+// // Problem 2: Stack with getMin() in O(1)
+// ///////////////////////
+// struct MinStack {
+//     int arr[100], top, minEle;
+//     MinStack() { top = -1; }
+    
+//     void push(int x) {
+//         if (top == -1) {
+//             arr[++top] = x;
+//             minEle = x;
+//         } else if (x >= minEle) {
+//             arr[++top] = x;
+//         } else {
+//             // store fake value
+//             arr[++top] = 2*x - minEle;
+//             minEle = x;
+//         }
+//     }
+
+//     int pop() {
+//         int t = arr[top--];
+//         if (t < minEle) {
+//             int orig = minEle;
+//             minEle = 2*minEle - t;
+//             return orig;
+//         }
+//         return t;
+//     }
+
+//     int getMin() { return minEle; }
+// };
+
+// ///////////////////////
+// // Problem 3: Next Greater Element
+// ///////////////////////
+// void nextGreater(int A[], int n) {
+//     int ans[100];
+//     Stack st;
+//     for (int i = n-1; i >= 0; i--) {
+//         while (!st.empty() && st.peek() <= A[i]) st.pop();
+//         ans[i] = st.empty() ? -1 : st.peek();
+//         st.push(A[i]);
+//     }
+//     for (int i = 0; i < n; i++) cout << ans[i] << " ";
+//     cout << endl;
+// }
+
+// ///////////////////////
+// // Problem 4: Daily Temperatures
+// ///////////////////////
+// void dailyTemps(int T[], int n) {
+//     int ans[100] = {0};
+//     Stack st;  // store indices
+//     for (int i = n-1; i >= 0; i--) {
+//         while (!st.empty() && T[st.peek()] <= T[i]) st.pop();
+//         if (!st.empty()) ans[i] = st.peek() - i;
+//         else ans[i] = 0;
+//         st.push(i);
+//     }
+//     for (int i = 0; i < n; i++) cout << ans[i] << " ";
+//     cout << endl;
+// }
+
+// ///////////////////////
+// // Problem 5: Stack permutation check
+// ///////////////////////
+// bool canTransform(int A[], int n) {
+//     Stack st;
+//     int B[100], idx = 0;
+//     int expected = 1;
+
+//     for (int i = 0; i < n; i++) {
+//         st.push(A[i]);
+//         while (!st.empty() && st.peek() == expected) {
+//             B[idx++] = st.pop();
+//             expected++;
+//         }
+//     }
+//     return (expected == n+1);
+// }
+
+// ///////////////////////
+// // Main driver
+// ///////////////////////
+// int main() {
+//     cout << "Problem 1: Nearest Smaller\n";
+//     int A1[5] = {4, 5, 2, 10, 8};
+//     nearestSmaller(A1, 5);
+
+//     cout << "\nProblem 2: Stack with getMin\n";
+//     MinStack ms;
+//     ms.push(3); ms.push(5);
+//     cout << ms.getMin() << endl;
+//     ms.push(2); ms.push(1);
+//     cout << ms.getMin() << endl;
+//     ms.pop();
+//     cout << ms.getMin() << endl;
+
+//     cout << "\nProblem 3: Next Greater Element\n";
+//     int A2[4] = {4, 5, 2, 25};
+//     nextGreater(A2, 4);
+
+//     cout << "\nProblem 4: Daily Temperatures\n";
+//     int T[8] = {73,74,75,71,69,72,76,73};
+//     dailyTemps(T, 8);
+
+//     cout << "\nProblem 5: Stack permutation check\n";
+//     int A3[5] = {1,2,3,4,5};
+//     if (canTransform(A3, 5)) cout << "Yes\n"; else cout << "No\n";
+
+//     int A4[5] = {5,4,1,2,3};
+//     if (canTransform(A4, 5)) cout << "Yes\n"; else cout << "No\n";
+
+//     return 0;
+// }
 //                                ASSIGNMENT 4 (Queues)
 // 1.)
 

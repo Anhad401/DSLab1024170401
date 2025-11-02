@@ -2340,6 +2340,1055 @@ using namespace std;
 
 //     return dummy->next;
 // }
+//                                                       ASSIGNMENT 6
+// 1.}
+
+// //   circular ll
+// struct CNode {
+//     int data;
+//     CNode* next;
+//     CNode(int val) : data(val), next(nullptr) {}
+// };
+
+// class CircularList {
+//     CNode* head;
+// public:
+//     CircularList() { head = nullptr; }
+
+//     void insertAtBeginning(int val) {
+//         CNode* newNode = new CNode(val);
+//         if (!head) {
+//             head = newNode;
+//             newNode->next = head;
+//             return;
+//         }
+//         CNode* temp = head;
+//         while (temp->next != head) temp = temp->next;
+//         temp->next = newNode;
+//         newNode->next = head;
+//         head = newNode;
+//     }
+
+//     void insertAtEnd(int val) {
+//         CNode* newNode = new CNode(val);
+//         if (!head) {
+//             head = newNode;
+//             newNode->next = head;
+//             return;
+//         }
+//         CNode* temp = head;
+//         while (temp->next != head) temp = temp->next;
+//         temp->next = newNode;
+//         newNode->next = head;
+//     }
+
+//     void insertAfter(int key, int val) {
+//         if (!head) { cout << "List empty!\n"; return; }
+//         CNode* temp = head;
+//         do {
+//             if (temp->data == key) {
+//                 CNode* newNode = new CNode(val);
+//                 newNode->next = temp->next;
+//                 temp->next = newNode;
+//                 return;
+//             }
+//             temp = temp->next;
+//         } while (temp != head);
+//         cout << "Key not found!\n";
+//     }
+
+//     void deleteNode(int key) {
+//         if (!head) return;
+//         CNode *curr = head, *prev = nullptr;
+
+//         if (head->data == key && head->next == head) {
+//             delete head;
+//             head = nullptr;
+//             return;
+//         }
+
+//         do {
+//             if (curr->data == key) {
+//                 if (curr == head) {
+//                     CNode* last = head;
+//                     while (last->next != head)
+//                         last = last->next;
+//                     head = head->next;
+//                     last->next = head;
+//                 } else {
+//                     prev->next = curr->next;
+//                 }
+//                 delete curr;
+//                 return;
+//             }
+//             prev = curr;
+//             curr = curr->next;
+//         } while (curr != head);
+//         cout << "Node not found!\n";
+//     }
+
+//     void search(int key) {
+//         if (!head) { cout << "Empty list!\n"; return; }
+//         CNode* temp = head;
+//         int pos = 1;
+//         do {
+//             if (temp->data == key) {
+//                 cout << "Node " << key << " found at position " << pos << endl;
+//                 return;
+//             }
+//             temp = temp->next;
+//             pos++;
+//         } while (temp != head);
+//         cout << "Node not found!\n";
+//     }
+
+//     void display() {
+//         if (!head) { cout << "List empty!\n"; return; }
+//         CNode* temp = head;
+//         cout << "Circular List: ";
+//         do {
+//             cout << temp->data << " ";
+//             temp = temp->next;
+//         } while (temp != head);
+//         cout << endl;
+//     }
+// };
+
+// // DLL
+// struct DNode {
+//     int data;
+//     DNode* prev;
+//     DNode* next;
+//     DNode(int val) : data(val), prev(nullptr), next(nullptr) {}
+// };
+
+// class DoublyList {
+//     DNode* head;
+// public:
+//     DoublyList() { head = nullptr; }
+
+//     void insertAtBeginning(int val) {
+//         DNode* newNode = new DNode(val);
+//         if (head)
+//             head->prev = newNode;
+//         newNode->next = head;
+//         head = newNode;
+//     }
+
+//     void insertAtEnd(int val) {
+//         DNode* newNode = new DNode(val);
+//         if (!head) { head = newNode; return; }
+//         DNode* temp = head;
+//         while (temp->next)
+//             temp = temp->next;
+//         temp->next = newNode;
+//         newNode->prev = temp;
+//     }
+
+//     void insertAfter(int key, int val) {
+//         DNode* temp = head;
+//         while (temp && temp->data != key)
+//             temp = temp->next;
+//         if (!temp) { cout << "Key not found!\n"; return; }
+//         DNode* newNode = new DNode(val);
+//         newNode->next = temp->next;
+//         newNode->prev = temp;
+//         if (temp->next)
+//             temp->next->prev = newNode;
+//         temp->next = newNode;
+//     }
+
+//     void deleteNode(int key) {
+//         if (!head) { cout << "Empty list!\n"; return; }
+//         DNode* temp = head;
+//         while (temp && temp->data != key)
+//             temp = temp->next;
+//         if (!temp) { cout << "Node not found!\n"; return; }
+//         if (temp->prev)
+//             temp->prev->next = temp->next;
+//         else
+//             head = temp->next;
+//         if (temp->next)
+//             temp->next->prev = temp->prev;
+//         delete temp;
+//     }
+
+//     void search(int key) {
+//         DNode* temp = head;
+//         int pos = 1;
+//         while (temp) {
+//             if (temp->data == key) {
+//                 cout << "Node " << key << " found at position " << pos << endl;
+//                 return;
+//             }
+//             temp = temp->next;
+//             pos++;
+//         }
+//         cout << "Node not found!\n";
+//     }
+
+//     void display() {
+//         DNode* temp = head;
+//         if (!temp) { cout << "List empty!\n"; return; }
+//         cout << "Doubly List: ";
+//         while (temp) {
+//             cout << temp->data << " ";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+// };
+
+// int main() {
+//     CircularList cList;
+//     DoublyList dList;
+//     int choice, type, val, key;
+
+//     cout << "===== MENU DRIVEN LINKED LIST PROGRAM =====\n";
+//     cout << "Select List Type:\n1. Circular Linked List\n2. Doubly Linked List\n";
+//     cin >> type;
+
+//     do {
+//         cout << "\n========== MENU ==========\n";
+//         cout << "1. Insert at Beginning\n";
+//         cout << "2. Insert at End\n";
+//         cout << "3. Insert After Specific Node\n";
+//         cout << "4. Delete a Node\n";
+//         cout << "5. Search a Node\n";
+//         cout << "6. Display List\n";
+//         cout << "0. Exit\n";
+//         cout << "Enter your choice: ";
+//         cin >> choice;
+
+//         switch (choice) {
+//         case 1:
+//             cout << "Enter value: ";
+//             cin >> val;
+//             if (type == 1) cList.insertAtBeginning(val);
+//             else dList.insertAtBeginning(val);
+//             break;
+
+//         case 2:
+//             cout << "Enter value: ";
+//             cin >> val;
+//             if (type == 1) cList.insertAtEnd(val);
+//             else dList.insertAtEnd(val);
+//             break;
+
+//         case 3:
+//             cout << "Enter key after which to insert: ";
+//             cin >> key;
+//             cout << "Enter new value: ";
+//             cin >> val;
+//             if (type == 1) cList.insertAfter(key, val);
+//             else dList.insertAfter(key, val);
+//             break;
+
+//         case 4:
+//             cout << "Enter value to delete: ";
+//             cin >> val;
+//             if (type == 1) cList.deleteNode(val);
+//             else dList.deleteNode(val);
+//             break;
+
+//         case 5:
+//             cout << "Enter value to search: ";
+//             cin >> val;
+//             if (type == 1) cList.search(val);
+//             else dList.search(val);
+//             break;
+
+//         case 6:
+//             if (type == 1) cList.display();
+//             else dList.display();
+//             break;
+
+//         case 0:
+//             cout << "Exiting...\n";
+//             break;
+
+//         default:
+//             cout << "Invalid choice!\n";
+//         }
+//     } while (choice != 0);
+
+//     return 0;
+// }
+// 2.}
+// struct Node {
+//     int data;
+//     Node* next;
+//     Node(int val) : data(val), next(nullptr) {}
+// };
+
+// void displayCircular(Node* head) {
+//     if (!head) return;
+//     Node* temp = head;
+//     do {
+//         cout << temp->data << " ";
+//         temp = temp->next;
+//     } while (temp != head);
+//     cout << head->data << endl; // repeat head
+// }
+
+// int main() {
+//     Node* head = new Node(20);
+//     head->next = new Node(100);
+//     head->next->next = new Node(40);
+//     head->next->next->next = new Node(80);
+//     head->next->next->next->next = new Node(60);
+//     head->next->next->next->next->next = head;
+
+//     cout << "Circular Linked List with repeated head value: ";
+//     displayCircular(head);
+//     return 0;
+// }
+// 3.}
+// struct DNode {
+//     int data;
+//     DNode* next;
+//     DNode* prev;
+//     DNode(int val) : data(val), next(nullptr), prev(nullptr) {}
+// };
+
+// int sizeOfDoubly(DNode* head) {
+//     int count = 0;
+//     while (head) {
+//         count++;
+//         head = head->next;
+//     }
+//     return count;
+// }
+
+// struct CNode {
+//     int data;
+//     CNode* next;
+//     CNode(int val) : data(val), next(nullptr) {}
+// };
+
+// int sizeOfCircular(CNode* head) {
+//     if (!head) return 0;
+//     int count = 0;
+//     CNode* temp = head;
+//     do {
+//         count++;
+//         temp = temp->next;
+//     } while (temp != head);
+//     return count;
+// }
+
+// int main() {
+//     // Doubly Linked List
+//     DNode* d1 = new DNode(10);
+//     d1->next = new DNode(20);
+//     d1->next->prev = d1;
+//     d1->next->next = new DNode(30);
+
+//     cout << "Size of Doubly Linked List: " << sizeOfDoubly(d1) << endl;
+
+//     // Circular Linked List
+//     CNode* c1 = new CNode(1);
+//     c1->next = new CNode(2);
+//     c1->next->next = new CNode(3);
+//     c1->next->next->next = c1;
+
+//     cout << "Size of Circular Linked List: " << sizeOfCircular(c1) << endl;
+//     return 0;
+// }
+// 4.}
+//    struct Node {
+//     char data;
+//     Node* prev;
+//     Node* next;
+//     Node(char val) : data(val), prev(nullptr), next(nullptr) {}
+// };
+
+// bool isPalindrome(Node* head) {
+//     if (!head) return true;
+//     Node* tail = head;
+//     while (tail->next)
+//         tail = tail->next;
+
+//     while (head != tail && tail->next != head) {
+//         if (head->data != tail->data)
+//             return false;
+//         head = head->next;
+//         tail = tail->prev;
+//     }
+//     return true;
+// }
+
+// int main() {
+//     Node* head = new Node('r');
+//     head->next = new Node('a');
+//     head->next->prev = head;
+//     head->next->next = new Node('d');
+//     head->next->next->prev = head->next;
+//     head->next->next->next = new Node('a');
+//     head->next->next->next->prev = head->next->next;
+//     head->next->next->next->next = new Node('r');
+//     head->next->next->next->next->prev = head->next->next->next;
+
+//     cout << (isPalindrome(head) ? "Palindrome" : "Not Palindrome") << endl;
+//     return 0;
+// }
+// 5.}
+//           struct Node {
+//     int data;
+//     Node* next;
+//     Node(int val) : data(val), next(nullptr) {}
+// };
+
+// bool isCircular(Node* head) {
+//     if (!head) return false;
+
+//     Node* slow = head;
+//     Node* fast = head->next;
+
+//     while (fast && fast->next) {
+//         if (slow == fast)
+//             return true;  // loop (circular) detected
+//         slow = slow->next;
+//         fast = fast->next->next;
+//     }
+
+//     return false; // reached end, not circular
+// }
+
+// int main() {
+//     // Example 1: Circular Linked List
+//     Node* head1 = new Node(10);
+//     head1->next = new Node(20);
+//     head1->next->next = new Node(30);
+//     head1->next->next->next = head1; // make circular
+
+//     cout << "List 1: " << (isCircular(head1) ? "Circular" : "Not Circular") << endl;
+
+//     // Example 2: Non-Circular Linked List
+//     Node* head2 = new Node(1);
+//     head2->next = new Node(2);
+//     head2->next->next = new Node(3);
+
+//     cout << "List 2: " << (isCircular(head2) ? "Circular" : "Not Circular") << endl;
+
+//     return 0;
+// }
+                                                    // ADDITIONAL QS
+// 1.}
+
+// struct CNode {
+//     int data;
+//     CNode* next;
+//     CNode(int x=0): data(x), next(nullptr) {}
+// };
+
+// pair<CNode*, CNode*> splitCircularList(CNode* head) {
+//     // returns pair {head1, head2}, either may be nullptr if input empty
+//     if (!head) return {nullptr, nullptr};
+
+//     // Use slow & fast pointers to find midpoint
+//     CNode* slow = head;
+//     CNode* fast = head;
+
+//     // Move fast by 2, slow by 1; stop when fast reaches back to head or one step before
+//     while (fast->next != head && fast->next->next != head) {
+//         slow = slow->next;
+//         fast = fast->next->next;
+//     }
+
+//     // For even nodes fast->next->next == head may be false; handle both cases by moving fast if needed
+//     if (fast->next->next == head) // even number -> move fast one more to be at last node
+//         fast = fast->next;
+
+//     // Now slow is end of first half, fast is last node
+//     CNode* head1 = head;
+//     CNode* head2 = slow->next;
+
+//     // Make first circular
+//     slow->next = head1;
+//     // Make second circular
+//     fast->next = head2;
+
+//     return {head1, head2};
+// }
+
+// // helper to create circular list from vector
+// CNode* makeCircular(const vector<int>& arr) {
+//     if (arr.empty()) return nullptr;
+//     CNode* head = new CNode(arr[0]);
+//     CNode* cur = head;
+//     for (size_t i=1;i<arr.size();++i) {
+//         cur->next = new CNode(arr[i]);
+//         cur = cur->next;
+//     }
+//     cur->next = head;
+//     return head;
+// }
+
+// void printCircular(CNode* head) {
+//     if (!head) { cout << "Empty\n"; return; }
+//     CNode* cur = head;
+//     do {
+//         cout << cur->data << " ";
+//         cur = cur->next;
+//     } while (cur != head);
+//     cout << "\n";
+// }
+
+ // 2.}    
+
+// // Doubly linked node
+// struct DNode {
+//     int data;
+//     DNode* prev;
+//     DNode* next;
+//     DNode(int x=0): data(x), prev(nullptr), next(nullptr) {}
+// };
+
+// // remove even nodes from doubly linked list; returns new head
+// DNode* removeEvenDoubly(DNode* head) {
+//     DNode* cur = head;
+//     while (cur) {
+//         DNode* nxt = cur->next;
+//         if ((cur->data % 2) == 0) {
+//             // remove cur
+//             if (cur->prev) cur->prev->next = cur->next;
+//             else head = cur->next; // removed head
+//             if (cur->next) cur->next->prev = cur->prev;
+//             delete cur;
+//         }
+//         cur = nxt;
+//     }
+//     return head;
+// }
+
+// DNode* makeDoubly(const vector<int>& arr) {
+//     if (arr.empty()) return nullptr;
+//     DNode* head = new DNode(arr[0]);
+//     DNode* cur = head;
+//     for (size_t i=1;i<arr.size();++i) {
+//         cur->next = new DNode(arr[i]);
+//         cur->next->prev = cur;
+//         cur = cur->next;
+//     }
+//     return head;
+// }
+
+// void printDoubly(DNode* head) {
+//     DNode* cur = head;
+//     while (cur) {
+//         cout << cur->data;
+//         if (cur->next) cout << " ";
+//         cur = cur->next;
+//     }
+//     cout << "\n";
+// }
+
+// // remove even nodes from circular singly list; returns new head
+// CNode* removeEvenCircular(CNode* head) {
+//     if (!head) return nullptr;
+//     // handle nodes until head becomes odd or list becomes empty
+//     // first handle leading even nodes (head may change)
+//     while (head && (head->data % 2) == 0) {
+//         // if only one node
+//         if (head->next == head) {
+//             delete head;
+//             return nullptr;
+//         }
+//         // find last to re-link
+//         CNode* last = head;
+//         while (last->next != head) last = last->next;
+//         CNode* toDelete = head;
+//         head = head->next;
+//         last->next = head;
+//         delete toDelete;
+//     }
+//     if (!head) return nullptr;
+
+//     // now head is odd; remove remaining even nodes
+//     CNode* prev = head;
+//     CNode* cur = head->next;
+//     while (cur != head) {
+//         if ((cur->data % 2) == 0) {
+//             prev->next = cur->next;
+//             delete cur;
+//             cur = prev->next;
+//         } else {
+//             prev = cur;
+//             cur = cur->next;
+//         }
+//     }
+//     return head;
+// }
+
+// 3.}
+// DNode* reverseGroupDoubly(DNode* head, int k) {
+//     if (!head || k <= 1) return head;
+
+//     // We'll perform iterative grouping
+//     DNode* newHead = nullptr;
+//     DNode* groupPrevTail = nullptr; // tail of previous processed group
+//     DNode* cur = head;
+
+//     while (cur) {
+//         // collect group
+//         DNode* groupHead = cur;
+//         DNode* groupTail = cur;
+//         int cnt = 1;
+//         while (cnt < k && groupTail->next) {
+//             groupTail = groupTail->next;
+//             ++cnt;
+//         }
+
+//         DNode* nextGroupHead = groupTail->next;
+
+//         // reverse group from groupHead to groupTail (inclusive)
+//         DNode* p = groupHead;
+//         DNode* temp = nullptr;
+//         // standard reversal swapping next and prev within group
+//         DNode* end = groupTail->next; // boundary (stop when p == end)
+//         while (p != end) {
+//             temp = p->next;
+//             p->next = p->prev;
+//             p->prev = temp;
+//             p = temp;
+//         }
+//         // after reversal, groupTail becomes new head of group
+//         if (!newHead) newHead = groupTail;
+
+//         // connect previous group's tail to new group's head
+//         if (groupPrevTail) {
+//             groupPrevTail->next = groupTail;
+//             groupTail->prev = groupPrevTail;
+//         }
+//         // connect new group's tail (which is original groupHead) to nextGroupHead
+//         groupHead->next = nextGroupHead;
+//         if (nextGroupHead) nextGroupHead->prev = groupHead;
+
+//         // update for next iteration
+//         groupPrevTail = groupHead;
+//         cur = nextGroupHead;
+//     }
+//     return newHead;
+// }
+
+// 4.}
+// struct DRNode {
+//     int data;
+//     DRNode* prev;
+//     DRNode* next;
+//     DRNode* random;
+//     DRNode(int x=0): data(x), prev(nullptr), next(nullptr), random(nullptr) {}
+// };
+
+// // helper to build list from vector and optionally set randoms by shift delta
+// vector<DRNode*> buildDRList(const vector<int>& vals) {
+//     vector<DRNode*> nodes;
+//     for (int v: vals) nodes.push_back(new DRNode(v));
+//     for (size_t i=0;i<nodes.size();++i) {
+//         nodes[i]->next = (i+1<nodes.size()? nodes[i+1] : nullptr);
+//         nodes[i]->prev = (i>0 ? nodes[i-1] : nullptr);
+//     }
+//     return nodes;
+// }
+
+// // heuristic fixer
+// void fixSingleWrongRandom(DRNode* head) {
+//     if (!head) return;
+//     // collect nodes in vector
+//     vector<DRNode*> nodes;
+//     for (DRNode* p=head; p; p=p->next) nodes.push_back(p);
+//     int n = nodes.size();
+//     if (n==0) return;
+
+//     // compute index map
+//     unordered_map<DRNode*, int> idx;
+//     for (int i=0;i<n;++i) idx[nodes[i]] = i;
+
+//     // compute deltas for nodes with non-null random; store counts
+//     unordered_map<int,int> deltaCount;
+//     vector<int> deltas(n, INT_MIN); // INT_MIN -> random null
+//     for (int i=0;i<n;++i) {
+//         DRNode* r = nodes[i]->random;
+//         if (!r) { deltas[i] = INT_MIN; continue; }
+//         if (idx.find(r)==idx.end()) { deltas[i] = INT_MIN; continue; } // points outside
+//         int d = idx[r] - i; // relative offset
+//         deltas[i] = d;
+//         deltaCount[d]++;
+//     }
+
+//     if (deltaCount.empty()) {
+//         // nothing to infer
+//         return;
+//     }
+
+//     // find majority delta
+//     int majorityDelta = 0;
+//     int bestCount = -1;
+//     for (auto &pr: deltaCount) {
+//         if (pr.second > bestCount) {
+//             bestCount = pr.second;
+//             majorityDelta = pr.first;
+//         }
+//     }
+
+//     // find outlier index(s) whose delta != majorityDelta
+//     int outlierIdx = -1;
+//     for (int i=0;i<n;++i) {
+//         if (deltas[i] != INT_MIN && deltas[i] != majorityDelta) {
+//             outlierIdx = i;
+//             break;
+//         }
+//     }
+
+//     if (outlierIdx == -1) {
+//         // maybe some are INT_MIN, attempt to set them if majorityDelta is defined
+//         for (int i=0;i<n;++i) {
+//             if (deltas[i]==INT_MIN) { outlierIdx = i; break; }
+//         }
+//     }
+
+//     if (outlierIdx == -1) return; // nothing to fix
+
+//     int targetIdx = outlierIdx + majorityDelta;
+//     if (targetIdx < 0 || targetIdx >= n) {
+//         // can't set within bounds => set null
+//         nodes[outlierIdx]->random = nullptr;
+//     } else {
+//         nodes[outlierIdx]->random = nodes[targetIdx];
+//     }
+// }
+
+//5.}
+// struct GridNode {
+//     int val;
+//     GridNode* right;
+//     GridNode* left;
+//     GridNode* up;
+//     GridNode* down;
+//     GridNode(int x=0): val(x), right(nullptr), left(nullptr), up(nullptr), down(nullptr) {}
+// };
+
+// vector<vector<GridNode*>> matrixToGrid(const vector<vector<int>>& A) {
+//     int m = A.size();
+//     if (m==0) return {};
+//     int n = A[0].size();
+//     vector<vector<GridNode*>> G(m, vector<GridNode*>(n,nullptr));
+//     for (int i=0;i<m;++i) for (int j=0;j<n;++j) G[i][j] = new GridNode(A[i][j]);
+//     // link right and left
+//     for (int i=0;i<m;++i) {
+//         for (int j=0;j<n;++j) {
+//             if (j+1<n) { G[i][j]->right = G[i][j+1]; G[i][j+1]->left = G[i][j]; }
+//             if (i+1<m) { G[i][j]->down = G[i+1][j]; G[i+1][j]->up = G[i][j]; }
+//         }
+//     }
+//     return G;
+// }
+
+// void printGridRowMajor(const vector<vector<GridNode*>>& G) {
+//     int m = G.size();
+//     if (m==0) { cout << "Empty grid\n"; return; }
+//     int n = G[0].size();
+//     for (int i=0;i<m;++i) {
+//         for (int j=0;j<n;++j) {
+//             cout << G[i][j]->val;
+//             if (j+1<n) cout << " ";
+//         }
+//         cout << "\n";
+//     }
+// }
+//                                                           Assignment- 7 Sorting 
+// 1.}
+// ---------- a. SELECTION SORT ----------
+// void selectionSort(vector<int>& arr) {
+//     int n = arr.size();
+//     for (int i = 0; i < n - 1; ++i) {
+//         int minIdx = i;
+//         for (int j = i + 1; j < n; ++j)
+//             if (arr[j] < arr[minIdx])
+//                 minIdx = j;
+//         swap(arr[i], arr[minIdx]);
+//     }
+// }
+
+// // ---------- b. INSERTION SORT ----------
+// void insertionSort(vector<int>& arr) {
+//     int n = arr.size();
+//     for (int i = 1; i < n; ++i) {
+//         int key = arr[i];
+//         int j = i - 1;
+//         while (j >= 0 && arr[j] > key) {
+//             arr[j + 1] = arr[j];
+//             j--;
+//         }
+//         arr[j + 1] = key;
+//     }
+// }
+
+// // ---------- c. BUBBLE SORT ----------
+// void bubbleSort(vector<int>& arr) {
+//     int n = arr.size();
+//     bool swapped;
+//     for (int i = 0; i < n - 1; ++i) {
+//         swapped = false;
+//         for (int j = 0; j < n - i - 1; ++j) {
+//             if (arr[j] > arr[j + 1]) {
+//                 swap(arr[j], arr[j + 1]);
+//                 swapped = true;
+//             }
+//         }
+//         if (!swapped) break; // optimization
+//     }
+// }
+
+// // ---------- d. MERGE SORT ----------
+// void merge(vector<int>& arr, int l, int m, int r) {
+//     int n1 = m - l + 1;
+//     int n2 = r - m;
+//     vector<int> L(n1), R(n2);
+//     for (int i = 0; i < n1; ++i) L[i] = arr[l + i];
+//     for (int j = 0; j < n2; ++j) R[j] = arr[m + 1 + j];
+
+//     int i = 0, j = 0, k = l;
+//     while (i < n1 && j < n2)
+//         arr[k++] = (L[i] <= R[j]) ? L[i++] : R[j++];
+//     while (i < n1) arr[k++] = L[i++];
+//     while (j < n2) arr[k++] = R[j++];
+// }
+
+// void mergeSort(vector<int>& arr, int l, int r) {
+//     if (l < r) {
+//         int m = (l + r) / 2;
+//         mergeSort(arr, l, m);
+//         mergeSort(arr, m + 1, r);
+//         merge(arr, l, m, r);
+//     }
+// }
+
+// // ---------- e. QUICK SORT ----------
+// int partitionQ(vector<int>& arr, int low, int high) {
+//     int pivot = arr[high];
+//     int i = low - 1;
+//     for (int j = low; j < high; ++j) {
+//         if (arr[j] < pivot) {
+//             i++;
+//             swap(arr[i], arr[j]);
+//         }
+//     }
+//     swap(arr[i + 1], arr[high]);
+//     return i + 1;
+// }
+
+// void quickSort(vector<int>& arr, int low, int high) {
+//     if (low < high) {
+//         int pi = partitionQ(arr, low, high);
+//         quickSort(arr, low, pi - 1);
+//         quickSort(arr, pi + 1, high);
+//     }
+// }
+
+// // ---------- DISPLAY ----------
+// void display(const vector<int>& arr) {
+//     for (int x : arr) cout << x << " ";
+//     cout << "\n";
+// }
+
+// // ---------- MAIN (MENU DRIVEN) ----------
+// int main() {
+//     vector<int> arr;
+//     int n, choice;
+
+//     cout << "Enter number of elements: ";
+//     cin >> n;
+//     arr.resize(n);
+//     cout << "Enter elements: ";
+//     for (int i = 0; i < n; ++i) cin >> arr[i];
+
+//     cout << "\nMENU:\n";
+//     cout << "1. Selection Sort\n";
+//     cout << "2. Insertion Sort\n";
+//     cout << "3. Bubble Sort\n";
+//     cout << "4. Merge Sort\n";
+//     cout << "5. Quick Sort\n";
+//     cout << "Enter your choice: ";
+//     cin >> choice;
+
+//     vector<int> temp = arr; // to preserve original
+
+//     switch (choice) {
+//         case 1:
+//             selectionSort(temp);
+//             cout << "After Selection Sort: ";
+//             break;
+//         case 2:
+//             insertionSort(temp);
+//             cout << "After Insertion Sort: ";
+//             break;
+//         case 3:
+//             bubbleSort(temp);
+//             cout << "After Bubble Sort: ";
+//             break;
+//         case 4:
+//             mergeSort(temp, 0, n - 1);
+//             cout << "After Merge Sort: ";
+//             break;
+//         case 5:
+//             quickSort(temp, 0, n - 1);
+//             cout << "After Quick Sort: ";
+//             break;
+//         default:
+//             cout << "Invalid choice!\n";
+//             return 0;
+//     }
+
+//     display(temp);
+//     return 0;
+// }
+// 2.}
+// void improvedSelectionSort(vector<int>& arr) {
+//     int n = arr.size();
+//     int start = 0, end = n - 1;
+
+//     while (start < end) {
+//         int minIndex = start;
+//         int maxIndex = start;
+
+//         // Find minimum and maximum in current range
+//         for (int i = start; i <= end; ++i) {
+//             if (arr[i] < arr[minIndex])
+//                 minIndex = i;
+//             if (arr[i] > arr[maxIndex])
+//                 maxIndex = i;
+//         }
+
+//         // Move minimum element to beginning
+//         swap(arr[start], arr[minIndex]);
+
+//         // If the max element was originally at 'start',
+//         // it has now moved to 'minIndex' after swapping
+//         if (maxIndex == start)
+//             maxIndex = minIndex;
+
+//         // Move maximum element to end
+//         swap(arr[end], arr[maxIndex]);
+
+//         start++;
+//         end--;
+//     }
+// }
+
+// int main() {
+//     int n;
+//     cout << "Enter number of elements: ";
+//     cin >> n;
+
+//     vector<int> arr(n);
+//     cout << "Enter elements: ";
+//     for (int i = 0; i < n; ++i)
+//         cin >> arr[i];
+
+//     improvedSelectionSort(arr);
+
+//     cout << "Sorted array: ";
+//     for (int x : arr) cout << x << " ";
+//     cout << endl;
+
+//     return 0;
+// }
+// //                                                               Counting Sort
+// void countingSort(vector<int>& arr) {
+//     if (arr.empty()) return;
+
+//     int maxVal = *max_element(arr.begin(), arr.end());
+//     int minVal = *min_element(arr.begin(), arr.end());
+//     int range = maxVal - minVal + 1;
+
+//     vector<int> count(range, 0);
+//     vector<int> output(arr.size());
+
+//     // Count occurrences
+//     for (int num : arr)
+//         count[num - minVal]++;
+
+//     // Prefix sums
+//     for (int i = 1; i < range; ++i)
+//         count[i] += count[i - 1];
+
+//     // Build output array (stable)
+//     for (int i = arr.size() - 1; i >= 0; --i) {
+//         output[count[arr[i] - minVal] - 1] = arr[i];
+//         count[arr[i] - minVal]--;
+//     }
+
+//     // Copy back
+//     arr = output;
+// }
+
+// int main() {
+//     int n;
+//     cout << "Enter number of elements: ";
+//     cin >> n;
+//     vector<int> arr(n);
+//     cout << "Enter elements: ";
+//     for (int i = 0; i < n; ++i) cin >> arr[i];
+
+//     countingSort(arr);
+
+//     cout << "Sorted array (Counting Sort): ";
+//     for (int x : arr) cout << x << " ";
+//     cout << endl;
+
+//     return 0;
+// }
+// //                                                         Radix Sort
 
 
+// // Counting Sort by digit place
+// void countingSortByDigit(vector<int>& arr, int exp) {
+//     int n = arr.size();
+//     vector<int> output(n);
+//     vector<int> count(10, 0); // digits 0-9
 
+//     // Count digits
+//     for (int num : arr)
+//         count[(num / exp) % 10]++;
+
+//     // Prefix sum (cumulative count)
+//     for (int i = 1; i < 10; ++i)
+//         count[i] += count[i - 1];
+
+//     // Build output (stable)
+//     for (int i = n - 1; i >= 0; --i) {
+//         int digit = (arr[i] / exp) % 10;
+//         output[count[digit] - 1] = arr[i];
+//         count[digit]--;
+//     }
+
+//     // Copy back
+//     arr = output;
+// }
+
+// void radixSort(vector<int>& arr) {
+//     int maxVal = *max_element(arr.begin(), arr.end());
+//     // Apply counting sort for each digit
+//     for (int exp = 1; maxVal / exp > 0; exp *= 10)
+//         countingSortByDigit(arr, exp);
+// }
+
+// int main() {
+//     int n;
+//     cout << "Enter number of elements: ";
+//     cin >> n;
+//     vector<int> arr(n);
+//     cout << "Enter elements: ";
+//     for (int i = 0; i < n; ++i)
+//         cin >> arr[i];
+
+//     radixSort(arr);
+
+//     cout << "Sorted array (Radix Sort): ";
+//     for (int x : arr) cout << x << " ";
+//     cout << endl;
+
+//     return 0;
+// }

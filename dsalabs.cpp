@@ -1770,5 +1770,576 @@ using namespace std;
 
 //     return 0;
 // }
+//                                                                    Assignment 5 :  singly Linkedlist
+// #include <iostream>
+// using namespace std;
+
+// struct Node {
+//     int data;
+//     Node* next;
+// };
+
+// class LinkedList {
+// private:
+//     Node* head;
+
+// public:
+//     LinkedList() { head = nullptr; }
+
+//     // (a) Insertion at beginning
+//     void insertAtBeginning(int val) {
+//         Node* newNode = new Node{val, head};
+//         head = newNode;
+//     }
+
+//     // (b) Insertion at end
+//     void insertAtEnd(int val) {
+//         Node* newNode = new Node{val, nullptr};
+//         if (!head) {
+//             head = newNode;
+//             return;
+//         }
+//         Node* temp = head;
+//         while (temp->next)
+//             temp = temp->next;
+//         temp->next = newNode;
+//     }
+
+//     // (c) Insert before or after a specific node
+//     void insertBeforeAfter(int key, int val, bool after) {
+//         if (!head) {
+//             cout << "List is empty.\n";
+//             return;
+//         }
+//         if (!after && head->data == key) { // insert before head
+//             insertAtBeginning(val);
+//             return;
+//         }
+
+//         Node* prev = nullptr;
+//         Node* curr = head;
+
+//         while (curr && curr->data != key) {
+//             prev = curr;
+//             curr = curr->next;
+//         }
+
+//         if (!curr) {
+//             cout << "Node with value " << key << " not found.\n";
+//             return;
+//         }
+
+//         Node* newNode = new Node{val, nullptr};
+//         if (after) {
+//             newNode->next = curr->next;
+//             curr->next = newNode;
+//         } else {
+//             newNode->next = curr;
+//             prev->next = newNode;
+//         }
+//     }
+
+//     // (d) Delete from beginning
+//     void deleteFromBeginning() {
+//         if (!head) {
+//             cout << "List is empty.\n";
+//             return;
+//         }
+//         Node* temp = head;
+//         head = head->next;
+//         delete temp;
+//     }
+
+//     // (e) Delete from end
+//     void deleteFromEnd() {
+//         if (!head) {
+//             cout << "List is empty.\n";
+//             return;
+//         }
+//         if (!head->next) {
+//             delete head;
+//             head = nullptr;
+//             return;
+//         }
+//         Node* temp = head;
+//         while (temp->next->next)
+//             temp = temp->next;
+//         delete temp->next;
+//         temp->next = nullptr;
+//     }
+
+//     // (f) Delete a specific node
+//     void deleteSpecific(int key) {
+//         if (!head) {
+//             cout << "List is empty.\n";
+//             return;
+//         }
+//         if (head->data == key) {
+//             deleteFromBeginning();
+//             return;
+//         }
+//         Node* temp = head;
+//         while (temp->next && temp->next->data != key)
+//             temp = temp->next;
+
+//         if (!temp->next) {
+//             cout << "Node not found.\n";
+//             return;
+//         }
+//         Node* toDelete = temp->next;
+//         temp->next = toDelete->next;
+//         delete toDelete;
+//     }
+
+//     // (g) Search for a node
+//     void search(int key) {
+//         Node* temp = head;
+//         int pos = 1;
+//         while (temp) {
+//             if (temp->data == key) {
+//                 cout << "Node " << key << " found at position " << pos << ".\n";
+//                 return;
+//             }
+//             temp = temp->next;
+//             pos++;
+//         }
+//         cout << "Node not found.\n";
+//     }
+
+//     // (h) Display
+//     void display() {
+//         if (!head) {
+//             cout << "List is empty.\n";
+//             return;
+//         }
+//         Node* temp = head;
+//         cout << "Linked List: ";
+//         while (temp) {
+//             cout << temp->data;
+//             if (temp->next) cout << " -> ";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+// };
+
+// int main() {
+//     LinkedList list;
+//     int choice, val, key;
+//     bool after;
+
+//     do {
+//         cout << "\n--- MENU ---\n";
+//         cout << "1. Insert at Beginning\n2. Insert at End\n3. Insert Before/After a Node\n";
+//         cout << "4. Delete from Beginning\n5. Delete from End\n6. Delete Specific Node\n";
+//         cout << "7. Search Node\n8. Display List\n0. Exit\n";
+//         cout << "Enter your choice: ";
+//         cin >> choice;
+
+//         switch (choice) {
+//         case 1:
+//             cout << "Enter value: ";
+//             cin >> val;
+//             list.insertAtBeginning(val);
+//             break;
+//         case 2:
+//             cout << "Enter value: ";
+//             cin >> val;
+//             list.insertAtEnd(val);
+//             break;
+//         case 3:
+//             cout << "Enter existing node value: ";
+//             cin >> key;
+//             cout << "Enter new value: ";
+//             cin >> val;
+//             cout << "Insert (0=before, 1=after): ";
+//             cin >> after;
+//             list.insertBeforeAfter(key, val, after);
+//             break;
+//         case 4:
+//             list.deleteFromBeginning();
+//             break;
+//         case 5:
+//             list.deleteFromEnd();
+//             break;
+//         case 6:
+//             cout << "Enter value to delete: ";
+//             cin >> key;
+//             list.deleteSpecific(key);
+//             break;
+//         case 7:
+//             cout << "Enter value to search: ";
+//             cin >> key;
+//             list.search(key);
+//             break;
+//         case 8:
+//             list.display();
+//             break;
+//         case 0:
+//             cout << "Exiting...\n";
+//             break;
+//         default:
+//             cout << "Invalid choice!\n";
+//         }
+//     } while (choice != 0);
+
+//     return 0;
+// }
+// // 2.}
+// include <iostream>
+// using namespace std;
+
+// struct Node {
+//     int data;
+//     Node* next;
+//     Node(int val) : data(val), next(nullptr) {}
+// };
+
+// class LinkedList {
+//     Node* head;
+// public:
+//     LinkedList() { head = nullptr; }
+
+//     void insertAtEnd(int val) {
+//         Node* newNode = new Node(val);
+//         if (!head) { head = newNode; return; }
+//         Node* temp = head;
+//         while (temp->next) temp = temp->next;
+//         temp->next = newNode;
+//     }
+
+//     void display() {
+//         Node* temp = head;
+//         while (temp) {
+//             cout << temp->data;
+//             if (temp->next) cout << "->";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+
+//     void countAndDeleteOccurrences(int key) {
+//         int count = 0;
+//         Node* temp = head;
+//         Node* prev = nullptr;
+
+//         while (temp) {
+//             if (temp->data == key) {
+//                 count++;
+//                 if (temp == head) {
+//                     head = head->next;
+//                     delete temp;
+//                     temp = head;
+//                 } else {
+//                     prev->next = temp->next;
+//                     delete temp;
+//                     temp = prev->next;
+//                 }
+//             } else {
+//                 prev = temp;
+//                 temp = temp->next;
+//             }
+//         }
+
+//         cout << "Count: " << count << endl;
+//         cout << "Updated Linked List: ";
+//         display();
+//     }
+// };
+
+// int main() {
+//     LinkedList list;
+//     list.insertAtEnd(1);
+//     list.insertAtEnd(2);
+//     list.insertAtEnd(1);
+//     list.insertAtEnd(2);
+//     list.insertAtEnd(1);
+//     list.insertAtEnd(3);
+//     list.insertAtEnd(1);
+
+//     cout << "Original Linked List: ";
+//     list.display();
+
+//     int key = 1;
+//     cout << "Key to delete: " << key << endl;
+//     list.countAndDeleteOccurrences(key);
+// }
+// 3.}
+
+
+// struct Node {
+//     int data;
+//     Node* next;
+//     Node(int val) : data(val), next(nullptr) {}
+// };
+
+// class LinkedList {
+//     Node* head;
+// public:
+//     LinkedList() { head = nullptr; }
+
+//     void insertAtEnd(int val) {
+//         Node* newNode = new Node(val);
+//         if (!head) { head = newNode; return; }
+//         Node* temp = head;
+//         while (temp->next) temp = temp->next;
+//         temp->next = newNode;
+//     }
+
+//     void display() {
+//         Node* temp = head;
+//         while (temp) {
+//             cout << temp->data;
+//             if (temp->next) cout << "->";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+
+//     void findMiddle() {
+//         if (!head) {
+//             cout << "List is empty." << endl;
+//             return;
+//         }
+//         Node* slow = head;
+//         Node* fast = head;
+//         while (fast && fast->next) {
+//             slow = slow->next;
+//             fast = fast->next->next;
+//         }
+//         cout << "Middle Node: " << slow->data << endl;
+//     }
+// };
+
+// int main() {
+//     LinkedList list;
+//     list.insertAtEnd(1);
+//     list.insertAtEnd(2);
+//     list.insertAtEnd(3);
+//     list.insertAtEnd(4);
+//     list.insertAtEnd(5);
+
+//     cout << "Linked List: ";
+//     list.display();
+
+//     list.findMiddle();
+// }
+
+//4.}
+// struct Node {
+//     int data;
+//     Node* next;
+//     Node(int val) : data(val), next(nullptr) {}
+// };
+
+// class LinkedList {
+//     Node* head;
+// public:
+//     LinkedList() { head = nullptr; }
+
+//     void insertAtEnd(int val) {
+//         Node* newNode = new Node(val);
+//         if (!head) { head = newNode; return; }
+//         Node* temp = head;
+//         while (temp->next) temp = temp->next;
+//         temp->next = newNode;
+//     }
+
+//     void display() {
+//         Node* temp = head;
+//         while (temp) {
+//             cout << temp->data;
+//             if (temp->next) cout << "->";
+//             temp = temp->next;
+//         }
+//         cout << "->NULL" << endl;
+//     }
+
+//     void reverse() {
+//         Node* prev = nullptr;
+//         Node* curr = head;
+//         Node* next = nullptr;
+//         while (curr) {
+//             next = curr->next;
+//             curr->next = prev;
+//             prev = curr;
+//             curr = next;
+//         }
+//         head = prev;
+//         cout << "Reversed Linked List: ";
+//         display();
+//     }
+// };
+
+// int main() {
+//     LinkedList list;
+//     list.insertAtEnd(1);
+//     list.insertAtEnd(2);
+//     list.insertAtEnd(3);
+//     list.insertAtEnd(4);
+
+//     cout << "Original Linked List: ";
+//     list.display();
+
+//     list.reverse();
+// }
+//                                                                 ADDITIONAL QS
+// 1.}
+// struct Node {
+//     int data;
+//     Node* next;
+//     Node(int val) : data(val), next(nullptr) {}
+// };
+
+// int getLength(Node* head) {
+//     int len = 0;
+//     while (head) { len++; head = head->next; }
+//     return len;
+// }
+
+// Node* findIntersection(Node* head1, Node* head2) {
+//     int len1 = getLength(head1);
+//     int len2 = getLength(head2);
+//     int diff = abs(len1 - len2);
+
+//     if (len1 > len2)
+//         while (diff--) head1 = head1->next;
+//     else
+//         while (diff--) head2 = head2->next;
+
+//     while (head1 && head2) {
+//         if (head1 == head2)
+//             return head1;
+//         head1 = head1->next;
+//         head2 = head2->next;
+//     }
+//     return nullptr;
+// }
+
+// 2.}
+// struct Node2 {
+//     int data;
+//     Node2* next;
+//     Node2(int val) : data(val), next(nullptr) {}
+// };
+
+// Node2* reverseKGroup(Node2* head, int k) {
+//     Node2* curr = head;
+//     Node2* prev = nullptr;
+//     Node2* next = nullptr;
+//     int count = 0;
+
+//     Node2* temp = head;
+//     while (temp && count < k) { temp = temp->next; count++; }
+//     if (count < k) return head;
+
+//     count = 0;
+//     while (curr && count < k) {
+//         next = curr->next;
+//         curr->next = prev;
+//         prev = curr;
+//         curr = next;
+//         count++;
+//     }
+
+//     if (next)
+//         head->next = reverseKGroup(next, k);
+
+//     return prev;
+// }
+
+// 3.}
+// struct Node3 {
+//     int data;
+//     Node3* next;
+//     Node3(int val) : data(val), next(nullptr) {}
+// };
+
+// void removeLoop(Node3* head) {
+//     if (!head) return;
+//     Node3* slow = head;
+//     Node3* fast = head;
+
+//     while (fast && fast->next) {
+//         slow = slow->next;
+//         fast = fast->next->next;
+//         if (slow == fast) break;
+//     }
+
+//     if (slow != fast) return;
+
+//     slow = head;
+//     while (slow->next != fast->next) {
+//         slow = slow->next;
+//         fast = fast->next;
+//     }
+
+//     fast->next = nullptr; // remove loop
+// }
+
+// 4.}
+// struct Node4 {
+//     int data;
+//     Node4* next;
+//     Node4(int val) : data(val), next(nullptr) {}
+// };
+
+// void rotateLeft(Node4*& head, int k) {
+//     if (!head || k == 0) return;
+
+//     Node4* temp = head;
+//     int len = 1;
+//     while (temp->next) {
+//         temp = temp->next;
+//         len++;
+//     }
+
+//     k %= len;
+//     if (k == 0) return;
+
+//     temp->next = head; // make circular
+//     Node4* newTail = head;
+//     for (int i = 1; i < k; i++)
+//         newTail = newTail->next;
+
+//     head = newTail->next;
+//     newTail->next = nullptr;
+// }
+
+// 5.}
+// struct PolyNode {
+//     int coeff;
+//     int pow;
+//     PolyNode* next;
+//     PolyNode(int c, int p) : coeff(c), pow(p), next(nullptr) {}
+// };
+
+// PolyNode* addPolynomials(PolyNode* p1, PolyNode* p2) {
+//     PolyNode* dummy = new PolyNode(0, 0);
+//     PolyNode* temp = dummy;
+
+//     while (p1 && p2) {
+//         if (p1->pow > p2->pow) {
+//             temp->next = new PolyNode(p1->coeff, p1->pow);
+//             p1 = p1->next;
+//         }
+//         else if (p2->pow > p1->pow) {
+//             temp->next = new PolyNode(p2->coeff, p2->pow);
+//             p2 = p2->next;
+//         }
+//         else {
+//             temp->next = new PolyNode(p1->coeff + p2->coeff, p1->pow);
+//             p1 = p1->next;
+//             p2 = p2->next;
+//         }
+//         temp = temp->next;
+//     }
+
+//     while (p1) { temp->next = new PolyNode(p1->coeff, p1->pow); p1 = p1->next; temp = temp->next; }
+//     while (p2) { temp->next = new PolyNode(p2->coeff, p2->pow); p2 = p2->next; temp = temp->next; }
+
+//     return dummy->next;
+// }
+
 
 

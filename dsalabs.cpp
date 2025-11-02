@@ -3392,3 +3392,390 @@ using namespace std;
 
 //     return 0;
 // }
+// //                                                             ASSIGNMENT 8 TREES 
+// //Node structure
+// struct Node {
+//     int data;
+//     Node* left;
+//     Node* right;
+
+//     Node(int val) {
+//         data = val;
+//         left = right = nullptr;
+//     }
+// };
+
+// // Function prototypes
+// void preorder(Node* root);
+// void inorder(Node* root);
+// void postorder(Node* root);
+
+// // Recursive Traversals
+// void preorder(Node* root) {
+//     if (root == nullptr)
+//         return;
+//     cout << root->data << " ";   // Visit root
+//     preorder(root->left);        // Traverse left subtree
+//     preorder(root->right);       // Traverse right subtree
+// }
+
+// void inorder(Node* root) {
+//     if (root == nullptr)
+//         return;
+//     inorder(root->left);         // Traverse left
+//     cout << root->data << " ";   // Visit root
+//     inorder(root->right);        // Traverse right
+// }
+
+// void postorder(Node* root) {
+//     if (root == nullptr)
+//         return;
+//     postorder(root->left);       // Traverse left
+//     postorder(root->right);      // Traverse right
+//     cout << root->data << " ";   // Visit root
+// }
+// // 2.}
+// //Node structure
+// struct Node {
+//     int data;
+//     Node* left;
+//     Node* right;
+
+//     Node(int val) {
+//         data = val;
+//         left = right = nullptr;
+//     }
+// };
+
+// // Function to insert a new node into the BST
+// Node* insert(Node* root, int key) {
+//     if (root == nullptr)
+//         return new Node(key);
+
+//     if (key < root->data)
+//         root->left = insert(root->left, key);
+//     else if (key > root->data)
+//         root->right = insert(root->right, key);
+
+//     return root;
+// }
+
+// // (a) Search in BST (Recursive)
+// Node* searchRecursive(Node* root, int key) {
+//     if (root == nullptr || root->data == key)
+//         return root;
+
+//     if (key < root->data)
+//         return searchRecursive(root->left, key);
+//     else
+//         return searchRecursive(root->right, key);
+// }
+
+// // (a) Search in BST (Non-Recursive)
+// Node* searchIterative(Node* root, int key) {
+//     while (root != nullptr) {
+//         if (key == root->data)
+//             return root;
+//         else if (key < root->data)
+//             root = root->left;
+//         else
+//             root = root->right;
+//     }
+//     return nullptr;
+// }
+
+// // (b) Find Maximum element in BST
+// Node* findMax(Node* root) {
+//     if (root == nullptr)
+//         return nullptr;
+
+//     while (root->right != nullptr)
+//         root = root->right;
+//     return root;
+// }
+
+// // (c) Find Minimum element in BST
+// Node* findMin(Node* root) {
+//     if (root == nullptr)
+//         return nullptr;
+
+//     while (root->left != nullptr)
+//         root = root->left;
+//     return root;
+// }
+
+// // (d) Inorder Successor
+// Node* inorderSuccessor(Node* root, Node* node) {
+//     if (node->right != nullptr)
+//         return findMin(node->right);
+
+//     Node* successor = nullptr;
+//     Node* ancestor = root;
+//     while (ancestor != node) {
+//         if (node->data < ancestor->data) {
+//             successor = ancestor;
+//             ancestor = ancestor->left;
+//         } else {
+//             ancestor = ancestor->right;
+//         }
+//     }
+//     return successor;
+// }
+
+// // (e) Inorder Predecessor
+// Node* inorderPredecessor(Node* root, Node* node) {
+//     if (node->left != nullptr)
+//         return findMax(node->left);
+
+//     Node* predecessor = nullptr;
+//     Node* ancestor = root;
+//     while (ancestor != node) {
+//         if (node->data > ancestor->data) {
+//             predecessor = ancestor;
+//             ancestor = ancestor->right;
+//         } else {
+//             ancestor = ancestor->left;
+//         }
+//     }
+//     return predecessor;
+// }
+
+// // Helper: Inorder Traversal
+// void inorder(Node* root) {
+//     if (root == nullptr)
+//         return;
+//     inorder(root->left);
+//     cout << root->data << " ";
+//     inorder(root->right);
+// }
+
+// // Main function
+// int main() {
+//     Node* root = nullptr;
+
+//     // Create BST
+//     int elements[] = {50, 30, 70, 20, 40, 60, 80};
+//     for (int x : elements)
+//         root = insert(root, x);
+
+//     cout << "Inorder Traversal of BST: ";
+//     inorder(root);
+//     cout << "\n";
+
+//     // (a) Search
+//     int key = 40;
+//     Node* found = searchRecursive(root, key);
+//     cout << (found ? "\nFound (Recursive): " : "\nNot Found (Recursive): ") << key;
+
+//     found = searchIterative(root, key);
+//     cout << (found ? "\nFound (Iterative): " : "\nNot Found (Iterative): ") << key << "\n";
+
+//     // (b) Maximum element
+//     cout << "\nMaximum Element: " << findMax(root)->data;
+
+//     // (c) Minimum element
+//     cout << "\nMinimum Element: " << findMin(root)->data;
+
+//     // (d) Inorder Successor
+//     Node* node = searchRecursive(root, 60);
+//     Node* succ = inorderSuccessor(root, node);
+//     if (succ)
+//         cout << "\nInorder Successor of " << node->data << " is " << succ->data;
+//     else
+//         cout << "\nInorder Successor does not exist.";
+
+//     // (e) Inorder Predecessor
+//     Node* pred = inorderPredecessor(root, node);
+//     if (pred)
+//         cout << "\nInorder Predecessor of " << node->data << " is " << pred->data;
+//     else
+//         cout << "\nInorder Predecessor does not exist.";
+
+//     cout << "\n";
+//     return 0;
+// }
+
+// // 3.}
+// // Node structure
+// struct Node {
+//     int data;
+//     Node* left;
+//     Node* right;
+
+//     Node(int val) {
+//         data = val;
+//         left = right = nullptr;
+//     }
+// };
+
+// // (a) Insert an element (no duplicates)
+// Node* insert(Node* root, int key) {
+//     if (root == nullptr)
+//         return new Node(key);
+
+//     if (key < root->data)
+//         root->left = insert(root->left, key);
+//     else if (key > root->data)
+//         root->right = insert(root->right, key);
+//     else
+//         cout << "Duplicate key " << key << " not allowed!\n";
+
+//     return root;
+// }
+
+// // Find minimum value node (used for deletion)
+// Node* findMin(Node* node) {
+//     while (node && node->left != nullptr)
+//         node = node->left;
+//     return node;
+// }
+
+// // (b) Delete an existing element
+// Node* deleteNode(Node* root, int key) {
+//     if (root == nullptr)
+//         return root;
+
+//     if (key < root->data)
+//         root->left = deleteNode(root->left, key);
+//     else if (key > root->data)
+//         root->right = deleteNode(root->right, key);
+//     else {
+//         // Node found
+//         if (root->left == nullptr) {
+//             Node* temp = root->right;
+//             delete root;
+//             return temp;
+//         } else if (root->right == nullptr) {
+//             Node* temp = root->left;
+//             delete root;
+//             return temp;
+//         }
+
+//         // Node with two children: get inorder successor (smallest in right subtree)
+//         Node* temp = findMin(root->right);
+//         root->data = temp->data;
+//         root->right = deleteNode(root->right, temp->data);
+//     }
+//     return root;
+// }
+
+// // (c) Maximum depth (height) of BST
+// int maxDepth(Node* root) {
+//     if (root == nullptr)
+//         return 0;
+//     return 1 + max(maxDepth(root->left), maxDepth(root->right));
+// }
+
+// // (d) Minimum depth of BST
+// int minDepth(Node* root) {
+//     if (root == nullptr)
+//         return 0;
+//     if (root->left == nullptr && root->right == nullptr)
+//         return 1;
+
+//     if (root->left == nullptr)
+//         return 1 + minDepth(root->right);
+//     if (root->right == nullptr)
+//         return 1 + minDepth(root->left);
+
+//     return 1 + min(minDepth(root->left), minDepth(root->right));
+// }
+
+// // Helper: Inorder Traversal
+// void inorder(Node* root) {
+//     if (root == nullptr)
+//         return;
+//     inorder(root->left);
+//     cout << root->data << " ";
+//     inorder(root->right);
+// }
+
+// // Main Function
+// int main() {
+//     Node* root = nullptr;
+//     int choice, key;
+
+//     while (true) {
+//         cout << "\n===== Binary Search Tree Menu =====\n";
+//         cout << "1. Insert Element\n";
+//         cout << "2. Delete Element\n";
+//         cout << "3. Display Inorder Traversal\n";
+//         cout << "4. Maximum Depth of BST\n";
+//         cout << "5. Minimum Depth of BST\n";
+//         cout << "6. Exit\n";
+//         cout << "Enter your choice: ";
+//         cin >> choice;
+
+//         switch (choice) {
+//         case 1:
+//             cout << "Enter value to insert: ";
+//             cin >> key;
+//             root = insert(root, key);
+//             break;
+//         case 2:
+//             cout << "Enter value to delete: ";
+//             cin >> key;
+//             root = deleteNode(root, key);
+//             break;
+//         case 3:
+//             cout << "Inorder Traversal: ";
+//             inorder(root);
+//             cout << "\n";
+//             break;
+//         case 4:
+//             cout << "Maximum Depth (Height) of BST: " << maxDepth(root) << "\n";
+//             break;
+//         case 5:
+//             cout << "Minimum Depth of BST: " << minDepth(root) << "\n";
+//             break;
+//         case 6:
+//             cout << "Exiting...\n";
+//             return 0;
+//         default:
+//             cout << "Invalid choice! Try again.\n";
+//         }
+//     }
+// }
+// 4.}
+// struct Node {
+//     int data;
+//     Node *left, *right;
+//     Node(int val) { data = val; left = right = nullptr; }
+// };
+
+// Node* insert(Node* root, int key) {
+//     if (!root) return new Node(key);
+//     if (key < root->data) root->left = insert(root->left, key);
+//     else root->right = insert(root->right, key);
+//     return root;
+// }
+
+// bool isBST(Node* root, int minVal = INT_MIN, int maxVal = INT_MAX) {
+//     if (!root) return true;
+//     if (root->data <= minVal || root->data >= maxVal) return false;
+//     return isBST(root->left, minVal, root->data) && isBST(root->right, root->data, maxVal);
+// }
+// 5.}
+
+
+//                                                                ADDITIONAL QS
+// // 1.}
+// struct Node {
+//     int data;
+//     Node *left, *right;
+//     Node(int val) { data = val; left = right = nullptr; }
+// };
+
+// // Function to find sum of all left leaves
+// int sumOfLeftLeaves(Node* root) {
+//     if (!root) return 0;
+//     int sum = 0;
+//     if (root->left) {
+//         if (!root->left->left && !root->left->right)
+//             sum += root->left->data; // left leaf found
+//         else
+//             sum += sumOfLeftLeaves(root->left);
+//     }
+//     sum += sumOfLeftLeaves(root->right);
+//     return sum;
+// }
